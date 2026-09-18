@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wx0r72g7gs50"]
 
-[ext_resource type="Texture2D" uid="uid://bnh55q2yshs02" path="res://icon.svg" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://du7yvip5edklo" path="res://script/player.gd" id="1_v0l8b"]
+[ext_resource type="Texture2D" uid="uid://csdm6xn13yri7" path="res://fish.png" id="2_wp4xf"]
 [ext_resource type="Script" uid="uid://dcqlfwm7jeuod" path="res://script/obstacle_spawner.gd" id="3_wp4xf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
@@ -13,10 +13,12 @@ radius = 32.0
 script = ExtResource("1_v0l8b")
 
 [node name="Icon" type="Sprite2D" parent="Player" unique_id=657483052]
+position = Vector2(200, 0)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_itxqv")
+texture = ExtResource("2_wp4xf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=358400590]
+position = Vector2(200, 0)
 shape = SubResource("CircleShape2D_0yc80")
 
 [node name="ObstacleSpawner" type="Marker2D" parent="." unique_id=1336323012]

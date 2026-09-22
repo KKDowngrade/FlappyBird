@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yc80"]
 size = Vector2(64, 432.75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkpy8"]
+size = Vector2(62, 257)
+
 [node name="Obstacle" type="StaticBody2D" unique_id=2015718728]
 script = ExtResource("1_nyukl")
 
@@ -25,3 +28,11 @@ shape = SubResource("RectangleShape2D_0yc80")
 position = Vector2(0, 0.50001144)
 rotation = 3.1415927
 texture = ExtResource("2_nyukl")
+
+[node name="ScoreArea" type="Area2D" parent="." unique_id=1988445579]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea" unique_id=1997864682]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_wkpy8")
+
+[connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

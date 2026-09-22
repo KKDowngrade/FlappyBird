@@ -1,31 +1,96 @@
 [gd_scene format=3 uid="uid://wx0r72g7gs50"]
 
+[ext_resource type="Script" uid="uid://6dnx7l5mwjrt" path="res://script/main.gd" id="1_brvut"]
 [ext_resource type="Script" uid="uid://du7yvip5edklo" path="res://script/player.gd" id="1_v0l8b"]
-[ext_resource type="Texture2D" uid="uid://csdm6xn13yri7" path="res://fish.png" id="2_wp4xf"]
+[ext_resource type="Texture2D" uid="uid://2rh5n4fa1ns1" path="res://asset/bird.png" id="3_brvut"]
 [ext_resource type="Script" uid="uid://dcqlfwm7jeuod" path="res://script/obstacle_spawner.gd" id="3_wp4xf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
-radius = 32.0
+radius = 27.0
+
+[sub_resource type="Animation" id="Animation_brvut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0ha60"]
+resource_name = "fly"
+length = 0.5333366944823414
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4j5ol"]
+_data = {
+&"RESET": SubResource("Animation_brvut"),
+&"fly": SubResource("Animation_0ha60")
+}
 
 [node name="Main" type="Node2D" unique_id=230824226]
+script = ExtResource("1_brvut")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=961507644]
+position = Vector2(-2, 324)
 script = ExtResource("1_v0l8b")
 
 [node name="Icon" type="Sprite2D" parent="Player" unique_id=657483052]
+texture_filter = 1
 position = Vector2(200, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_wp4xf")
+scale = Vector2(3, 3)
+texture = ExtResource("3_brvut")
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=358400590]
 position = Vector2(200, 0)
 shape = SubResource("CircleShape2D_0yc80")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Player" unique_id=98173243]
+position = Vector2(200, -2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=1630600395]
+libraries/ = SubResource("AnimationLibrary_4j5ol")
+autoplay = &"fly"
 
 [node name="ObstacleSpawner" type="Marker2D" parent="." unique_id=1336323012]
 position = Vector2(1238, 297)
 script = ExtResource("3_wp4xf")
 
 [node name="Timer" type="Timer" parent="ObstacleSpawner" unique_id=514588763]
+wait_time = 2.0
 autostart = true
 
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1210683996]
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=1329668668]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "BUG"
+
+[connection signal="screen_exited" from="Player/VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
+[connection signal="scored" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_scored"]
 [connection signal="timeout" from="ObstacleSpawner/Timer" to="ObstacleSpawner" method="_on_timer_timeout"]

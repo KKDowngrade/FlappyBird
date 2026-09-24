@@ -2,8 +2,17 @@
 
 [ext_resource type="Script" uid="uid://6dnx7l5mwjrt" path="res://script/main.gd" id="1_brvut"]
 [ext_resource type="Script" uid="uid://du7yvip5edklo" path="res://script/player.gd" id="1_v0l8b"]
+[ext_resource type="AudioStream" uid="uid://dsfn78fl5auig" path="res://asset/jump.sfxr" id="3_0ha60"]
 [ext_resource type="Texture2D" uid="uid://2rh5n4fa1ns1" path="res://asset/bird.png" id="3_brvut"]
 [ext_resource type="Script" uid="uid://dcqlfwm7jeuod" path="res://script/obstacle_spawner.gd" id="3_wp4xf"]
+[ext_resource type="AudioStream" uid="uid://cndfrbavqpa78" path="res://asset/death.sfxr" id="5_4j5ol"]
+[ext_resource type="AudioStream" uid="uid://d16nb4qe10ws6" path="res://asset/Caketown 1.mp3" id="7_p1hux"]
+[ext_resource type="Texture2D" uid="uid://bnt1byvsnh4qw" path="res://asset/background.png" id="8_of57s"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0yc80"]
+random_pitch = 1.2741189
+streams_count = 1
+stream_0/stream = ExtResource("3_0ha60")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
 radius = 27.0
@@ -47,11 +56,17 @@ _data = {
 }
 
 [node name="Main" type="Node2D" unique_id=230824226]
+texture_filter = 1
+texture_repeat = 3
 script = ExtResource("1_brvut")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=961507644]
 position = Vector2(-2, 324)
 script = ExtResource("1_v0l8b")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1672111274]
+position = Vector2(2, -324)
+stream = SubResource("AudioStreamRandomizer_0yc80")
 
 [node name="Icon" type="Sprite2D" parent="Player" unique_id=657483052]
 texture_filter = 1
@@ -70,6 +85,9 @@ position = Vector2(200, -2)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=1630600395]
 libraries/ = SubResource("AnimationLibrary_4j5ol")
 autoplay = &"fly"
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Player" unique_id=713824399]
+stream = ExtResource("5_4j5ol")
 
 [node name="ObstacleSpawner" type="Marker2D" parent="." unique_id=1336323012]
 position = Vector2(1238, 297)
@@ -90,6 +108,21 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "BUG"
+
+[node name="SoundTrack" type="AudioStreamPlayer" parent="." unique_id=1761977114]
+stream = ExtResource("7_p1hux")
+autoplay = true
+parameters/looping = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=644400673]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=613703951]
+motion_mirroring = Vector2(1145, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1327347577]
+position = Vector2(575.3333, 324.5)
+scale = Vector2(1.7916666, 1.7916666)
+texture = ExtResource("8_of57s")
 
 [connection signal="screen_exited" from="Player/VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
 [connection signal="scored" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_scored"]

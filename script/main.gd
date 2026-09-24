@@ -7,9 +7,11 @@ var score = 0
 func _on_screen_exited() -> void:
 	get_tree().quit()
 
+
 func _ready() -> void:
 	score_label.text = str(score)
 
+
 func _on_obstacle_spawner_scored() -> void:
 	score += 1
-	
+	score_label.text = str(score)

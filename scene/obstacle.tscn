@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://v0hkam7vkksk" path="res://script/obstacle.gd" id="1_nyukl"]
 [ext_resource type="Texture2D" uid="uid://gn350okw2fjs" path="res://cano.png" id="2_nyukl"]
+[ext_resource type="AudioStream" uid="uid://braac8qu4wu7n" path="res://asset/score.sfxr" id="3_25435"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yc80"]
 size = Vector2(64, 432.75)
@@ -34,5 +35,8 @@ texture = ExtResource("2_nyukl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea" unique_id=1997864682]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_wkpy8")
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="." unique_id=453277299]
+stream = ExtResource("3_25435")
 
 [connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bslrrkxu87f06"]
 
 [ext_resource type="Script" uid="uid://v0hkam7vkksk" path="res://script/obstacle.gd" id="1_nyukl"]
-[ext_resource type="Texture2D" uid="uid://gn350okw2fjs" path="res://cano.png" id="2_nyukl"]
+[ext_resource type="Texture2D" uid="uid://c00lvq1ya61o" path="res://asset/pipe.png" id="2_25435"]
 [ext_resource type="AudioStream" uid="uid://braac8qu4wu7n" path="res://asset/score.sfxr" id="3_25435"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yc80"]
@@ -18,17 +18,21 @@ position = Vector2(0, 350)
 shape = SubResource("RectangleShape2D_0yc80")
 
 [node name="Icon2" type="Sprite2D" parent="CollisionShape2D" unique_id=2087370044]
-position = Vector2(0, -0.5000057)
-texture = ExtResource("2_nyukl")
+texture_filter = 1
+position = Vector2(-3.8146973e-06, 0.5000248)
+scale = Vector2(0.5, 0.8457031)
+texture = ExtResource("2_25435")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=747797307]
 position = Vector2(0, -350)
 shape = SubResource("RectangleShape2D_0yc80")
 
 [node name="Icon" type="Sprite2D" parent="CollisionShape2D2" unique_id=1352741015]
-position = Vector2(0, 0.50001144)
+position = Vector2(0.031034674, -0.12001419)
 rotation = 3.1415927
-texture = ExtResource("2_nyukl")
+scale = Vector2(0.50012517, 0.8454339)
+texture = ExtResource("2_25435")
+flip_h = true
 
 [node name="ScoreArea" type="Area2D" parent="." unique_id=1988445579]
 

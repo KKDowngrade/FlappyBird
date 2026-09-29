@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://2rh5n4fa1ns1" path="res://asset/bird.png" id="3_brvut"]
 [ext_resource type="Script" uid="uid://dcqlfwm7jeuod" path="res://script/obstacle_spawner.gd" id="3_wp4xf"]
 [ext_resource type="AudioStream" uid="uid://cndfrbavqpa78" path="res://asset/death.sfxr" id="5_4j5ol"]
-[ext_resource type="AudioStream" uid="uid://d16nb4qe10ws6" path="res://asset/Caketown 1.mp3" id="7_p1hux"]
+[ext_resource type="FontFile" uid="uid://c62br3cqoseug" path="res://asset/PressStart2P-Regular.ttf" id="7_b5f6u"]
+[ext_resource type="Script" uid="uid://dronxwm76h8c4" path="res://scene/parallax_background.gd" id="8_b5f6u"]
 [ext_resource type="Texture2D" uid="uid://bnt1byvsnh4qw" path="res://asset/background.png" id="8_of57s"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0yc80"]
@@ -54,6 +55,9 @@ _data = {
 &"RESET": SubResource("Animation_brvut"),
 &"fly": SubResource("Animation_0ha60")
 }
+
+[sub_resource type="Theme" id="Theme_2fwvj"]
+default_font = ExtResource("7_b5f6u")
 
 [node name="Main" type="Node2D" unique_id=230824226]
 texture_filter = 1
@@ -107,21 +111,18 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme = SubResource("Theme_2fwvj")
 text = "BUG"
 
-[node name="SoundTrack" type="AudioStreamPlayer" parent="." unique_id=1761977114]
-stream = ExtResource("7_p1hux")
-autoplay = true
-parameters/looping = true
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=718855154]
+script = ExtResource("8_b5f6u")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=644400673]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1242028010]
+motion_mirroring = Vector2(1152, 0)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=613703951]
-motion_mirroring = Vector2(1145, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1327347577]
-position = Vector2(575.3333, 324.5)
-scale = Vector2(1.7916666, 1.7916666)
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1636790087]
+position = Vector2(576, 324)
+scale = Vector2(1.8, 1.8)
 texture = ExtResource("8_of57s")
 
 [connection signal="screen_exited" from="Player/VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

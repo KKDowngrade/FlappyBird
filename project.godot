@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="FlappyBird"
-run/main_scene="uid://wx0r72g7gs50"
+run/main_scene="uid://d1l3yd8ijcnf3"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SoundTrack="*uid://ce3c4ml7hwbt3"
+EventBus="*uid://qt0ritchmrrd"
 
 [display]
 

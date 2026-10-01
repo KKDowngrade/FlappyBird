@@ -1,0 +1,72 @@
+[gd_resource type="Theme" format=3 uid="uid://oiug77y5wsy1"]
+
+[ext_resource type="FontFile" uid="uid://c62br3cqoseug" path="res://asset/PressStart2P-Regular.ttf" id="1_7vl0a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxu56"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.41639143, 0.6830931, 0.26167285, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2atga"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.41639143, 0.6830931, 0.26167285, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fwvj"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yc80"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.17254902, 0.17254902, 0.17254902, 0.7764706)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0, 0, 0, 0.5176471)
+shadow_size = 10
+shadow_offset = Vector2(8, 8)
+
+[resource]
+default_font = ExtResource("1_7vl0a")
+Button/styles/hover = SubResource("StyleBoxFlat_hxu56")
+Button/styles/normal = SubResource("StyleBoxFlat_2atga")
+Button/styles/pressed = SubResource("StyleBoxFlat_2fwvj")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_0yc80")

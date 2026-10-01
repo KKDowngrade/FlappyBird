@@ -7,6 +7,9 @@ const OBSTACLE = preload("uid://bslrrkxu87f06")
 @export var minimum_height: float = -150.0
 @export var maximum_height: float = 150.0
 
+func _ready() -> void:
+	EventBus.game_ended.connect($Timer.stop)
+
 func _on_timer_timeout() -> void:
 	var instance : Obstacle = OBSTACLE.instantiate()
 	var random_height = randf_range(minimum_height, maximum_height)
